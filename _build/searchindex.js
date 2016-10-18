@@ -1,0 +1,1 @@
+Search.setIndex({envversion:49,filenames:["bruch","index"],objects:{},objnames:{},objtypes:{},terms:{content:1,modulindex:1,stichwortverzeichnis:1,such:1},titles:["Bruch module","Welcome to TDD in PyCharm&#8217;s documentation!"],titleterms:{and:1,bruch:0,documentation:1,indic:1,modul:0,pycharm:1,tabl:1,tdd:1,welcom:1}})
