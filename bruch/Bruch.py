@@ -73,12 +73,49 @@ class Bruch(object):
             part += float(Bruch(self.zaehler, self.nenner)) + float(Bruch(args[0].zaehler, args[0].nenner))
         else:
             for i in len(args):
-                if isinstance(t,int):
-                    part += float(Bruch(self.zaehler, self.nenner)) + float(args)
-                elif isinstance(t,Bruch):
-                    t = args[i]
-                    part += float(Bruch(self.zaehler, self.nenner)) + float(Bruch(t.zaehler, t.nenner))
+                t = args[i]
         return part
+
+    def __radd__(self, other):
+        return self + other
+
+    def __sub__(self, *args):
+        part = 0
+        if isinstance(args[0], int):
+            part += float(Bruch(self.zaehler, self.nenner)) - float(args[0])
+        elif isinstance(args[0], Bruch):
+            part += float(Bruch(self.zaehler, self.nenner)) - float(Bruch(args[0].zaehler, args[0].nenner))
+        return part
+
+    def __isub__(self, other):
+        if isinstance(other, str):
+            raise TypeError
+
+        return self - other
+
+    def __rsub__(self, other):
+        if isinstance(other, float):
+            raise TypeError
+
+        return -self + other
+
+    def __mul__(self, *args):
+        if isinstance(args[0], float):
+            raise TypeError
+        part = 0
+        if isinstance(args[0], int):
+            part += float(Bruch(self.zaehler, self.nenner)) * float(args[0])
+        elif isinstance(args[0], Bruch):
+            part += float(Bruch(self.zaehler, self.nenner)) * float(Bruch(args[0].zaehler, args[0].nenner))
+        return part
+
+    def __rmul__(self, other):
+        return self * other
+
+    def __imul__(self, other):
+        if isinstance(other, str):
+            raise TypeError
+        return self * other
 
     def __eq__(self, other):
         return float(self) == float(other)
@@ -97,4 +134,3 @@ class Bruch(object):
 
     def __ne__(self, other):
         return float(self) != float(other)
-
