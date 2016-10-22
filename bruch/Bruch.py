@@ -64,6 +64,9 @@ class Bruch(object):
         else:
             raise TypeError
 
+    def __iter__(self):
+        return iter([self.zaehler,self.nenner])
+
     def __add__(self, *args):
         part = 0
 
@@ -108,6 +111,33 @@ class Bruch(object):
         elif isinstance(args[0], Bruch):
             part += float(Bruch(self.zaehler, self.nenner)) * float(Bruch(args[0].zaehler, args[0].nenner))
         return part
+
+    def __rdiv__(self, other):
+        return self / other
+
+    def __div__(self, *args):
+        part = 0
+        if isinstance(args[0], int):
+            part += float(Bruch(self.zaehler, self.nenner)) / float(args[0])
+        elif isinstance(args[0], Bruch):
+            part += float(Bruch(self.zaehler, self.nenner)) / float(Bruch(args[0].zaehler, args[0].nenner))
+        return part
+
+    def __truediv__(self, other):
+        if other == 0:
+            raise ZeroDivisionError
+        return self / Bruch(other)
+
+    def __itruediv__(self, other):
+        if isinstance(other, str):
+            raise TypeError
+        return self / other
+
+    def __rtruediv__(self, other):
+        if other == 0  or self == 0:
+            raise  ZeroDivisionError
+        if isinstance(other, float):
+            raise TypeError
 
     def __rmul__(self, other):
         return self * other
