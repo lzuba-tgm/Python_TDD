@@ -1,9 +1,11 @@
 Bruch module
 ---------------------
 .. automodule:: bruch
+    :members:
+
 .. autoclass:: Bruch
     :members:
     :private-members:
     :undoc-members:
-    :special-memebers: __new__
-    :show-inheritance:
+    :special-members:
+    
